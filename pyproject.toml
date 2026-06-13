@@ -1,0 +1,17 @@
+[project]
+name = "student-streaks-sql"
+version = "0.1.0"
+description = "Student Streaks Analysis in SQL"
+readme = "README.md"
+authors = [
+    { name = "Rajdeep Sandhu", email = "168480080+rajdeep-sandhu@users.noreply.github.com" }
+]
+requires-python = ">=3.14"
+dependencies = []
+
+[project.scripts]
+student-streaks-sql = "student_streaks_sql:main"
+
+[build-system]
+requires = ["uv_build>=0.11.21,<0.12.0"]
+build-backend = "uv_build"
