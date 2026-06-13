@@ -9,6 +9,7 @@ authors = [
 requires-python = ">=3.14"
 dependencies = [
     "marimo[recommended]>=0.23.9",
+    "sqlalchemy>=2.0.50",
 ]
 
 [project.scripts]
