@@ -208,11 +208,41 @@ def _():
     return (streaks_engine,)
 
 
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    #### Confirm connection to `streaks` database
+    """)
+    return
+
+
 @app.cell
 def _(streaks_engine: Engine):
     _df = mo.sql(
         f"""
         SELECT current_database();
+        """,
+        engine=streaks_engine
+    )
+    return
+
+
+@app.cell
+def _():
+    #### Get list of `public` schema tables.
+    return
+
+
+@app.cell
+def _(streaks_engine: Engine):
+    _df = mo.sql(
+        f"""
+        SELECT
+            *
+        FROM
+            information_schema.tables
+        WHERE
+            table_schema = 'public';
         """,
         engine=streaks_engine
     )
