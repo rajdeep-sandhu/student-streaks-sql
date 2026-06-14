@@ -5,11 +5,11 @@ app = marimo.App(width="full", app_title="Student Streaks")
 
 with app.setup:
     import os
-    import subprocess
-    from pathlib import Path
-
     import marimo as mo
     import sqlalchemy
+    import subprocess
+
+    from pathlib import Path
     from sqlalchemy import Engine
 
 
@@ -121,7 +121,7 @@ def create_engine(database: str | None = None) -> Engine:
 @app.cell
 def _():
     engine: Engine = create_engine(database="postgres")
-    return
+    return (engine,)
 
 
 @app.cell(hide_code=True)
@@ -172,6 +172,25 @@ def create_database() -> None:
 @app.cell
 def _():
     create_database()
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    #### Confirm `streaks` database creation
+    """)
+    return
+
+
+@app.cell
+def _(engine: Engine):
+    _df = mo.sql(
+        f"""
+        SELECT * FROM pg_catalog.pg_database;
+        """,
+        engine=engine
+    )
     return
 
 
