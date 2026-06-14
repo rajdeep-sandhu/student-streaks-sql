@@ -5,11 +5,11 @@ app = marimo.App(width="full", app_title="Student Streaks")
 
 with app.setup:
     import os
+    import subprocess
+    from pathlib import Path
+
     import marimo as mo
     import sqlalchemy
-    import subprocess
-
-    from pathlib import Path
     from sqlalchemy import Engine
 
 
@@ -152,6 +152,27 @@ def run_psql_script(sql_file: Path) -> subprocess.CompletedProcess:
     )
 
     return result
+
+
+@app.function
+def create_database() -> None:
+    """Create the project database."""
+    sql_file: Path = Path(__file__).parent / "user_streaks_database.sql"
+
+    result = run_psql_script(sql_file=sql_file)
+
+    if result.returncode == 0:
+        message = mo.callout(kind="success", value="Database created.")
+    else:
+        message = mo.callout(kind="danger", value="Database creation error.")
+
+    mo.output.replace(message)
+
+
+@app.cell
+def _():
+    create_database()
+    return
 
 
 if __name__ == "__main__":
