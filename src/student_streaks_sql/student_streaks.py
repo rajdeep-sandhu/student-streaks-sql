@@ -5,11 +5,11 @@ app = marimo.App(width="full", app_title="Student Streaks")
 
 with app.setup:
     import os
+    import subprocess
+    from pathlib import Path
+
     import marimo as mo
     import sqlalchemy
-    import subprocess
-
-    from pathlib import Path
     from sqlalchemy import Engine
 
 
@@ -229,7 +229,7 @@ def _(streaks_engine: Engine):
 
 @app.cell
 def _():
-    #### Get list of `public` schema tables.
+    # Get list of `public` schema tables.
     return
 
 
@@ -260,7 +260,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    ### Describe table columns
+    ### Describe `user_streaks_sql` table columns
     """)
     return
 
@@ -275,6 +275,25 @@ def _(streaks_engine: Engine):
             information_schema.columns
         WHERE
             table_name = 'user_streaks_sql';
+        """,
+        engine=streaks_engine
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ### Get `user_streaks_sql` table data
+    """)
+    return
+
+
+@app.cell
+def _(streaks_engine: Engine, user_streaks_sql):
+    _df = mo.sql(
+        f"""
+        SELECT * FROM user_streaks_sql;
         """,
         engine=streaks_engine
     )
