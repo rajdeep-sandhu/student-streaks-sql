@@ -10,12 +10,12 @@ CREATE DATABASE streaks;
 DROP TABLE IF EXISTS user_streaks_sql;
 
 CREATE TABLE user_streaks_sql (
-  streak_id int DEFAULT NULL,
-  user_id int DEFAULT NULL,
-  streak_active int DEFAULT NULL,
-  streak_frozen int DEFAULT NULL,
-  streak_platform int DEFAULT NULL,
-  streak_created timestamp DEFAULT NULL
+  streak_id       int       DEFAULT NULL,
+  user_id         int       DEFAULT NULL,
+  streak_active   int       DEFAULT NULL,
+  streak_frozen   int       DEFAULT NULL,
+  streak_platform int       DEFAULT NULL,
+  streak_created  timestamp DEFAULT NULL
 );
 
 -- Data for table`user_streaks_sql
