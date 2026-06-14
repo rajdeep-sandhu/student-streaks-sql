@@ -64,6 +64,25 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
+    ### Dataset
+
+    - This is provided by 365 Data Science as a MySQL script (`user_streaks_database.sql`), which has been modified for use with PostgreSQL.
+    - It creates a database called `streaks` with a table called `user_streaks_sql`.
+
+    #### Fields
+    - `streak_id`: Unique identifier for each streak record.
+    - `user_id`: Identifier for each user
+    - `streak_active`: Whether the streak is currently active (`True`) or not (`False`).
+    - `streak_frozen`: Whether the streak is currently frozen (`True`) or not (`False`).
+    - `streak_platform`: The platform on which the streak was recorded.
+    - `streak_created`: The date when the streak was started or updated.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
     ## Project Setup
     """)
     return
