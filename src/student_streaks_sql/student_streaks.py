@@ -11,8 +11,32 @@ with app.setup:
     from sqlalchemy import Engine
 
 
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    # Student Streaks Analysis with SQL
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ## Project Setup
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ### Setup default database engine
+    """)
+    return
+
+
 @app.function
-def create_engine(database: str = None) -> Engine:
+def create_engine(database: str | None = None) -> Engine:
     """
     Create database engine.
     Uses credentials from the environment unless database is supplied.
