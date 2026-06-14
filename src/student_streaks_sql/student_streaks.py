@@ -5,11 +5,11 @@ app = marimo.App(width="full", app_title="Student Streaks")
 
 with app.setup:
     import os
+    import subprocess
+    from pathlib import Path
+
     import marimo as mo
     import sqlalchemy
-    import subprocess
-
-    from pathlib import Path
     from sqlalchemy import Engine
 
 
@@ -191,6 +191,20 @@ def _(admin_engine: Engine):
         """,
         engine=admin_engine
     )
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ### Connect to `streaks` database
+    """)
+    return
+
+
+@app.cell
+def _():
+    streaks_engine: Engine = create_engine(database="streaks")
     return
 
 
