@@ -7,7 +7,9 @@ with app.setup:
     import os
     import marimo as mo
     import sqlalchemy
+    import subprocess
 
+    from pathlib import Path
     from sqlalchemy import Engine
 
 
@@ -120,6 +122,36 @@ def create_engine(database: str | None = None) -> Engine:
 def _():
     engine: Engine = create_engine(database="postgres")
     return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ### Create `streaks` database from SQL script using `psql`
+
+    This approach is used to allow creation of a database separate from the default database in a single script.
+    """)
+    return
+
+
+@app.function
+def run_psql_script(sql_file: Path) -> subprocess.CompletedProcess:
+    """
+    Run SQL script using psql.
+
+    Uses the default database and credentials from the environment.
+    """
+    username: str = os.environ.get("POSTGRES_USER")
+    password: str = os.environ.get("POSTGRES_PASSWORD")
+    database: str = os.environ.get("POSTGRES_DB")
+
+    result: subprocess.CompletedProcess = subprocess.run(
+        ["psql", "-h", "db", "-U", username, "-d", database, "-f", sql_file],
+        env={**os.environ, "PGPASSWORD": password},
+        check=True,
+    )
+
+    return result
 
 
 if __name__ == "__main__":
