@@ -120,8 +120,8 @@ def create_engine(database: str | None = None) -> Engine:
 
 @app.cell
 def _():
-    engine: Engine = create_engine(database="postgres")
-    return (engine,)
+    admin_engine: Engine = create_engine(database="postgres")
+    return (admin_engine,)
 
 
 @app.cell(hide_code=True)
@@ -184,12 +184,12 @@ def _():
 
 
 @app.cell
-def _(engine: Engine):
+def _(admin_engine: Engine):
     _df = mo.sql(
         f"""
         SELECT * FROM pg_catalog.pg_database;
         """,
-        engine=engine
+        engine=admin_engine
     )
     return
 
