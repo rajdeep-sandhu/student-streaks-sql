@@ -249,5 +249,37 @@ def _(streaks_engine: Engine):
     return
 
 
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ## Review table structure
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ### Describe table columns
+    """)
+    return
+
+
+@app.cell
+def _(streaks_engine: Engine):
+    _df = mo.sql(
+        f"""
+        SELECT
+            *
+        FROM
+            information_schema.columns
+        WHERE
+            table_name = 'user_streaks_sql';
+        """,
+        engine=streaks_engine
+    )
+    return
+
+
 if __name__ == "__main__":
     app.run()
