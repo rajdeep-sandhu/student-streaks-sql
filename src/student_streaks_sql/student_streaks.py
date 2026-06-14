@@ -53,6 +53,17 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
+    ### Calculations
+
+    - A streak's duration increments each day the user remains active, and has not frozen the streak manually to preserve progress.
+    - The length is not extended when there are no new daily interactions or when the streak is frozen.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
     ## Project Setup
     """)
     return
