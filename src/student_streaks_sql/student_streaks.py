@@ -5,9 +5,9 @@ app = marimo.App(width="full", app_title="Student Streaks")
 
 with app.setup:
     import os
-
     import marimo as mo
     import sqlalchemy
+
     from sqlalchemy import Engine
 
 
@@ -23,6 +23,16 @@ def _():
 def _():
     mo.md(r"""
     ## Description
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ### Aim
+
+    Calculate the most extended streak length of students on an educational platform.
     """)
     return
 
