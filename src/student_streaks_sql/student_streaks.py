@@ -22,6 +22,27 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
+    ## Description
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ### Background
+
+    - Websites, especially educational and learning platforms, rely on user data to reveal engagement patterns.
+    - This project analyses user streak data to identify the most engaged students. This can inform further actions like contacting them for testimonials, feedback, and to improve the product.
+    - **Streak:** The number of consecutive interactions in days.
+    - Streaks are a key metric and communicate insights about how users engage, and with what frequency.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
     ## Project Setup
     """)
     return
